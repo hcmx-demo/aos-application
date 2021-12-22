@@ -13,9 +13,9 @@ properties:
   - vm_password:
       value: Cloud_1234
       sensitive: false
-  - script_deploy_war: 'http://jenkins.hcmx.local:8080/job/AOS-repo/ws/deploy_war.sh'
-  - script_install_java: 'http://jenkins.hcmx.local:8080/job/AOS-repo/ws/install_java.sh'
-  - script_install_postgres: 'http://jenkins.hcmx.local:8080/job/AOS-repo/ws/install_postgres.sh'
-  - script_install_tomcat: 'http://jenkins.hcmx.local:8080/job/AOS-repo/ws/install_tomcat.sh'
-  - war_repo_root_url: 'http://jenkins.hcmx.local:8080/job/AOS-repo/lastSuccessfulBuild/artifact/'
+  - script_deploy_war: 'http://smax.modeloffice.org:32000/nexus/service/local/repositories/aos/content/deploy_war.sh'
+  - script_install_java: 'http://smax.modeloffice.org:32000/nexus/service/local/repositories/aos/content/install_java.sh'
+  - script_install_postgres: 'http://smax.modeloffice.org:32000/nexus/service/local/repositories/aos/content/install_postgres.sh'
+  - script_install_tomcat: 'http://smax.modeloffice.org:32000/nexus/service/local/repositories/aos/content/install_tomcat.sh'
+  - war_repo_root_url: 'http://smax.modeloffice.org:32000/nexus/service/local/repositories/aos/content/'
   - script_retries: '5'

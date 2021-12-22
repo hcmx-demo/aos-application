@@ -2,9 +2,10 @@ namespace: Integrations.AOS_application
 flow:
   name: deploy_aos
   inputs:
-    - target_host
-    - target_host_username
+    - target_host: 10.7.0.235
+    - target_host_username: root
     - target_host_password:
+        default: 1Q2w3e4r5t
         sensitive: true
   workflow:
     - install_postgres:
@@ -58,8 +59,8 @@ extensions:
   graph:
     steps:
       install_postgres:
-        x: 91
-        'y': 130
+        x: 80
+        'y': 160
       install_java:
         x: 250
         'y': 143

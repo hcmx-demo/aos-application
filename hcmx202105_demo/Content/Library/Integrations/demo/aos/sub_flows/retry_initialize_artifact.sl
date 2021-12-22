@@ -84,22 +84,22 @@ extensions:
     steps:
       no_artifact_given:
         x: 257
-        y: 6
+        'y': 6
       copy_artifact:
         x: 49
-        y: 160
+        'y': 160
       copy_script:
         x: 418
-        y: 161
+        'y': 161
       ssh_command:
-        x: 55
-        y: 310
+        x: 40
+        'y': 320
       delete_script:
         x: 248
-        y: 313
+        'y': 313
       has_succeeded:
         x: 450
-        y: 302
+        'y': 302
         navigate:
           b431cef2-32c1-cf2c-3a35-95bf6f12829c:
             targetId: 4012d319-d667-dea9-65f4-2b24e29f9ae5
@@ -111,8 +111,8 @@ extensions:
       FAILURE:
         8f9aa1a2-b5b4-6a09-5bdb-9fb94e9ab2e0:
           x: 589
-          y: 180
+          'y': 180
       SUCCESS:
         4012d319-d667-dea9-65f4-2b24e29f9ae5:
           x: 597
-          y: 308
+          'y': 308

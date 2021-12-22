@@ -9,14 +9,17 @@ flow:
     - password:
         prompt:
           type: text
-        default: Cloud_1234
+        default: 1Q2w3e4r5t
         sensitive: true
     - tomcat_host:
         prompt:
           type: text
+        default: 10.7.0.235
     - account_service_host:
+        default: 10.7.0.235
         required: false
     - db_host:
+        default: 10.7.0.235
         required: false
   workflow:
     - deploy_aos_wars:
@@ -46,5 +49,5 @@ extensions:
     results:
       SUCCESS:
         cea6732a-877d-dc69-d2f7-f7c6ee42ac23:
-          x: 391
-          'y': 219
+          x: 400
+          'y': 200
