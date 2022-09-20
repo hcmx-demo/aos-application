@@ -14,13 +14,16 @@ flow:
     - tomcat_host:
         prompt:
           type: text
-        default: 10.7.0.235
+        default: aos-dev-pool.modeloffice.org
     - account_service_host:
-        default: 10.7.0.235
+        default: aos-dev-pool.modeloffice.org
         required: false
     - db_host:
-        default: 10.7.0.235
+        default: aos-dev-pool.modeloffice.org
         required: false
+    - artifact:
+        prompt:
+          type: text
   workflow:
     - deploy_aos_wars:
         do:
@@ -30,6 +33,7 @@ flow:
             - db_host: "${get('db_host', tomcat_host)}"
             - username: '${username}'
             - password: '${password}'
+            - url: '${artifact}'
         navigate:
           - FAILURE: on_failure
           - SUCCESS: SUCCESS

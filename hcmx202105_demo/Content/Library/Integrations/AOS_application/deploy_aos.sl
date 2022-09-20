@@ -2,7 +2,7 @@ namespace: Integrations.AOS_application
 flow:
   name: deploy_aos
   inputs:
-    - target_host: 10.7.0.235
+    - target_host: 10.7.0.54
     - target_host_username: root
     - target_host_password:
         default: 1Q2w3e4r5t
@@ -68,8 +68,8 @@ extensions:
         x: 429
         'y': 145
       install_aos_application:
-        x: 598
-        'y': 145
+        x: 600
+        'y': 160
         navigate:
           c6a6b870-0c73-a551-95b5-3e41886588c1:
             targetId: 2599705f-4bec-871e-a894-22eb5f40002d

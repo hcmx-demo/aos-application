@@ -18,6 +18,9 @@ flow:
         required: false
     - db_host:
         required: false
+    - artifact:
+        prompt:
+          type: text
   workflow:
     - install_tomcat:
         do:
@@ -25,7 +28,7 @@ flow:
             - host: '${tomcat_host}'
             - username: '${username}'
             - password: '${password}'
-            - script_url: "${get_sp('script_install_tomcat')}"
+            - script_url: 'http://k8s-master.modeloffice.org:30004/repository/tools/tomcat/tomcat'
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure
@@ -45,5 +48,5 @@ extensions:
     results:
       SUCCESS:
         cea6732a-877d-dc69-d2f7-f7c6ee42ac23:
-          x: 391
-          'y': 219
+          x: 400
+          'y': 80

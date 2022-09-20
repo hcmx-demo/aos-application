@@ -52,8 +52,8 @@ extensions:
         x: 106
         'y': 88
       get_file:
-        x: 100
-        'y': 249
+        x: 80
+        'y': 240
       remote_secure_copy:
         x: 283
         'y': 247

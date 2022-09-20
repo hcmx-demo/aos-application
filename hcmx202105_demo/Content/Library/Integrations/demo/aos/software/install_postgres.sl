@@ -18,6 +18,9 @@ flow:
         required: false
     - db_host:
         required: false
+    - artifact:
+        prompt:
+          type: text
   workflow:
     - install_postgres:
         do:
@@ -25,7 +28,7 @@ flow:
             - host: "${get('db_host', tomcat_host)}"
             - username: '${username}'
             - password: '${password}'
-            - script_url: "${get_sp('script_install_postgres')}"
+            - script_url: 'http://k8s-master.modeloffice.org:30004/repository/tools/postgres/postgres.tgz'
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure

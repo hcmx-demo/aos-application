@@ -18,6 +18,9 @@ flow:
         required: false
     - db_host:
         required: false
+    - artifact:
+        prompt:
+          type: text
   workflow:
     - install_java:
         do:
@@ -25,7 +28,7 @@ flow:
             - host: '${tomcat_host}'
             - username: '${username}'
             - password: '${password}'
-            - script_url: "${get_sp('script_install_java')}"
+            - script_url: 'http://k8s-master.modeloffice.org:30004/repository/tools/tomcat/tomcat'
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure
@@ -36,8 +39,8 @@ extensions:
   graph:
     steps:
       install_java:
-        x: 69
-        'y': 108
+        x: 80
+        'y': 120
         navigate:
           c13f4bb8-a991-6186-f115-770df55334cf:
             targetId: cea6732a-877d-dc69-d2f7-f7c6ee42ac23

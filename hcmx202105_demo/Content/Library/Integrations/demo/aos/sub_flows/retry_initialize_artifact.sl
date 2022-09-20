@@ -42,13 +42,13 @@ flow:
         publish:
           - script_name: '${filename}'
         navigate:
-          - SUCCESS: ssh_command
+          - SUCCESS: no_artifact_given_1
           - FAILURE: on_failure
     - ssh_command:
         do:
           io.cloudslang.base.ssh.ssh_command:
             - host: '${host}'
-            - command: "${'cd '+get_sp('script_location')+' && sh '+script_name+' '+get('artifact_name', '')+' '+get('parameters', '')+' > '+script_name+'.log'}"
+            - command: "${'cd '+get_sp('script_location')+' && sh '+deploy_war.sh+' '+get('artifact_name', '')+' '+get('parameters', '')+' > deploy_war.sh.log'}"
             - username: '${username}'
             - password:
                 value: '${password}'
@@ -76,30 +76,66 @@ flow:
         navigate:
           - 'TRUE': SUCCESS
           - 'FALSE': FAILURE
+    - no_artifact_given_1:
+        do:
+          io.cloudslang.base.strings.string_equals:
+            - first_string: '${script_name}'
+            - second_string: postgres.tgz
+        publish: []
+        navigate:
+          - SUCCESS: ssh_command_1
+          - FAILURE: no_artifact_given_1_1
+    - ssh_command_1:
+        do:
+          io.cloudslang.base.ssh.ssh_command:
+            - host: '${host}'
+            - command: "${'cd '+get_sp('script_location')+' && sh test.sh '+get('artifact_name', '')+' '+get('parameters', '')+' > '+script_name+'.log'}"
+            - username: '${username}'
+            - password:
+                value: '${password}'
+                sensitive: true
+            - timeout: '300000'
+        publish:
+          - command_return_code
+        navigate:
+          - SUCCESS: delete_script
+          - FAILURE: delete_script
+    - no_artifact_given_1_1:
+        do:
+          io.cloudslang.base.strings.string_equals:
+            - first_string: '${script_name}'
+            - second_string: tomcat
+        publish: []
+        navigate:
+          - SUCCESS: ssh_command_1
+          - FAILURE: ssh_command
   results:
     - FAILURE
     - SUCCESS
 extensions:
   graph:
     steps:
+      no_artifact_given_1:
+        x: 40
+        'y': 280
+      ssh_command_1:
+        x: 40
+        'y': 480
       no_artifact_given:
         x: 257
         'y': 6
-      copy_artifact:
-        x: 49
-        'y': 160
-      copy_script:
-        x: 418
-        'y': 161
+      no_artifact_given_1_1:
+        x: 280
+        'y': 280
       ssh_command:
-        x: 40
-        'y': 320
-      delete_script:
-        x: 248
-        'y': 313
+        x: 480
+        'y': 280
+      copy_script:
+        x: 400
+        'y': 160
       has_succeeded:
-        x: 450
-        'y': 302
+        x: 800
+        'y': 320
         navigate:
           b431cef2-32c1-cf2c-3a35-95bf6f12829c:
             targetId: 4012d319-d667-dea9-65f4-2b24e29f9ae5
@@ -107,12 +143,18 @@ extensions:
           2c35bbd5-b4ec-37c2-3bde-b1b949f6aeb2:
             targetId: 8f9aa1a2-b5b4-6a09-5bdb-9fb94e9ab2e0
             port: 'FALSE'
+      copy_artifact:
+        x: 49
+        'y': 160
+      delete_script:
+        x: 600
+        'y': 440
     results:
       FAILURE:
         8f9aa1a2-b5b4-6a09-5bdb-9fb94e9ab2e0:
-          x: 589
-          'y': 180
+          x: 960
+          'y': 240
       SUCCESS:
         4012d319-d667-dea9-65f4-2b24e29f9ae5:
-          x: 597
-          'y': 308
+          x: 960
+          'y': 480
